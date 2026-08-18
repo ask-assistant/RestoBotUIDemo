@@ -1,0 +1,79 @@
+<mvc:View
+  controllerName="com.bot.resto.restaurantbot.controller.StockDetails"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m">
+
+  <Page title="Stock Management" 
+    showNavButton="true"
+    navButtonPress="onNavBack">
+
+    <content>
+      <Table id="stockTable" items="{stockModel>/items}">
+
+        <!-- HEADER -->
+        <headerToolbar>
+          <Toolbar>
+            <Title text="Stock Details"/>
+            <ToolbarSpacer/>
+
+            <Button text="Edit" press="onEditToggle"/>
+            <Button text="Add" press="onAddItem" visible="{stockModel>/isEdit}"/>
+            <Button text="Save" type="Emphasized" press="onSave" visible="{stockModel>/isEdit}"/>
+          </Toolbar>
+        </headerToolbar>
+
+        <!-- COLUMNS -->
+        <columns>
+          <Column><Text text="Item ID"/></Column>
+          <Column><Text text="Name"/></Column>
+          <Column><Text text="Description"/></Column>
+          <Column><Text text="Quantity"/></Column>
+          <Column><Text text="Price"/></Column>
+          <Column><Text text="Status"/></Column>
+          <Column><Text text="Category"/></Column>
+          <Column><Text text="veg / non-veg"/></Column>
+          <Column width="5rem"><Text text=""/></Column>
+        </columns>
+
+        <!-- ITEMS -->
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{stockModel>id}"/>
+              <Input value="{stockModel>Name}" editable="{stockModel>/isEdit}" change="onFieldChange"/>
+              <Input value="{stockModel>Description}" editable="{stockModel>/isEdit}"  change="onFieldChange"/>
+              <Input value="{stockModel>Quantity}" type="Number" editable="{stockModel>/isEdit}"  change="onFieldChange"/>
+              <Input value="{stockModel>Price}" type="Number" editable="{stockModel>/isEdit}"  change="onFieldChange"/>
+              <Select selectedKey="{stockModel>Status}" editable="{stockModel>/isEdit}"  change="onFieldChange">
+                <items>
+                  <core:Item key="available" text="available"/>
+                  <core:Item key="outOfStock" text="out-of-stock"/>
+                </items>
+              </Select>
+              <Input value="{stockModel>category}" editable="{stockModel>/isEdit}"  change="onFieldChange"/>
+              
+              <Select selectedKey="{stockModel>veg_nonveg}" editable="{stockModel>/isEdit}"  change="onFieldChange">
+                <items>
+                  <core:Item key="veg" text="veg"/>
+                  <core:Item key="nonVeg" text="non-veg"/>
+                </items>
+              </Select>
+
+
+              <!-- DELETE BUTTON -->
+              <Button
+                icon="sap-icon://delete"
+                type="Negative"
+                visible="{stockModel>/isEdit}"
+                press="onDeleteItem"/>
+                
+            </cells>
+          </ColumnListItem>
+        </items>
+
+      </Table>
+    </content>
+
+  </Page>
+</mvc:View>
