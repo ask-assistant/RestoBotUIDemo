@@ -47,8 +47,8 @@
               <Input value="{stockModel>Price}" type="Number" editable="{stockModel>/isEdit}"  change="onFieldChange"/>
               <Select selectedKey="{stockModel>Status}" editable="{stockModel>/isEdit}"  change="onFieldChange">
                 <items>
-                  <core:Item key="available" text="available"/>
-                  <core:Item key="outOfStock" text="out-of-stock"/>
+                  <core:Item key="Available" text="available"/>
+                  <core:Item key="Out of Stock" text="out-of-stock"/>
                 </items>
               </Select>
               <Input value="{stockModel>category}" editable="{stockModel>/isEdit}"  change="onFieldChange"/>
